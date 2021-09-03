@@ -1,0 +1,34 @@
+version: '3'
+services:
+  express:
+    image: desafio-magalu-backend
+    build:
+        context: .
+    ports:
+        - "3080:3080"
+    container_name: desafio-magalu-backend
+    volumes:
+        - ./:/usr/src/desafio-magalu-backend
+        - /usr/src/desafio-magalu-backend/node_modules
+
+  postgres:
+      image: postgres:10.5
+      restart: always
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      logging:
+        options:
+          max-size: 10m
+          max-file: "3"
+      ports:
+        - "5438:5432"
+      volumes: 
+        - ./postgres-data:/var/lib/postgresql/data
+        # copy the sql script to create tables
+
+  nextjs-ui:
+    ports:
+      - "3000:3000"
+    container_name: desafio-magalu-frontend
+    image: desafio-magalu-frontend
