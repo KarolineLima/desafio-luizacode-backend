@@ -1,19 +1,20 @@
-require('dotenv/config');
+import 'dotenv/config';
 
-const express = require('express')
-var cors = require('cors')
+import express from 'express';
+import cors from 'cors';
+import routes from './routes';
 
-const app = express()
-const port = 3080
+import './database';
 
-app.use(cors())
+class App{
+  constructor() {
+    this.server = express();
+    this.routes();
+  }
 
-app.get('/', (req, res) => {
-  res.send({
-      message: "hello I'm the backend"
-  })
-})
+  routes(){
+    this.server.user(routes);
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`)
-})
+export default new App().server;
