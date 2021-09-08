@@ -1,9 +1,8 @@
-import { Router } from 'express';
+import app from './app';
 
-import StoreController from './app/controller/StoreController';
+const PORT = process.env.PORT;
+app.listen(PORT);
 
-const routes = new Router();
+console.log(`This server started in port ${process.env.PORT}`)
 
-routes.get('/stores', StoreController.find);
 
-export default routes;

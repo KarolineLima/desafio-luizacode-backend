@@ -7,7 +7,8 @@ WORKDIR /usr/src/desafio-magalu-backend
 COPY . /usr/src/desafio-magalu-backend
 
 RUN npm install
+RUN npm run build
 
 EXPOSE 3080
 
-CMD ["node", "app.js"]
+CMD ["npm", "dev"]
