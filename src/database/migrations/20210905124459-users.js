@@ -22,15 +22,11 @@ module.exports = {
         allowNull: false,
       },
       cpf: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       birth_date: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      phone_number: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       phone_number: {
