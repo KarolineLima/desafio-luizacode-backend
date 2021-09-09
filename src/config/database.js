@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 module.exports = {
-    dialect: process.env.DB_DIALECT,
+    dialect: DB_DIALECT,
     host: process.env.DB_HOST,
     username: process.env.DB_USERNAME,
     port: process.env.DB_PORT,
