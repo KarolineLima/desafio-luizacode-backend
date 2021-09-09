@@ -21,6 +21,10 @@ module.exports = {
           key: 'id'
         }
       },*/
+      optionPickup:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      }
       shipping:{
         type: Sequelize.INTEGER,
         allowNull: false,
