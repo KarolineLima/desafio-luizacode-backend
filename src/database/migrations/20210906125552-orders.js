@@ -13,14 +13,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      product:{
+     /* product:{
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { 
           model: 'products',
           key: 'id'
         }
-      },
+      },*/
       shipping:{
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,12 +33,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      seller:{
+     /* store:{
+        type: Sequelize.INTEGER,
         references: {
-          model: 'sellers',
+          model: 'stores',
           key: 'id'
-        }
+        },
+        onDelete: 'SET NULL',
+        allowNull: false,
       },
+      user:{
+        type: Sequelize.INTEGER,
+        references:{
+          model:'users',
+          hey:'id'
+        },
+        onDelete: 'SET NULL',
+        allowNull: false,
+      },*/
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -50,8 +62,9 @@ module.exports = {
     });
    },
   
-   down: async (queryInterface, Sequelize) => {
+   down: queryInterface => {
     return queryInterface.dropTable('orders');
   }
+
 };
 
