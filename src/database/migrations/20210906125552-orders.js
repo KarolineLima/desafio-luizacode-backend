@@ -62,8 +62,9 @@ module.exports = {
     });
    },
   
-   down: async (queryInterface, Sequelize) => {
+   down: queryInterface => {
     return queryInterface.dropTable('orders');
   }
+
 };
 
