@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('orders', {
-      id:{
+      id_order:{
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -21,6 +21,10 @@ module.exports = {
           key: 'id'
         }
       },*/
+      optionPickup:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      }
       shipping:{
         type: Sequelize.INTEGER,
         allowNull: false,
