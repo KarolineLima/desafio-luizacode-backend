@@ -10,7 +10,7 @@ class UserController{
         password: Yup.string().required().min(6),
         cpf: Yup.string().required().min(11),
         birth_date: Yup.date().required(),
-        phone_number: Yup.string().phone().required(),
+        phone_number: Yup.number().phone().required(),
         address: Yup.string().required()
       });
 
@@ -22,7 +22,7 @@ class UserController{
   
       const userExists = await User.findOne({
          where: { 
-           email: req.body.email 
+           cpf: req.body.cpf 
           }
         });
   
@@ -30,8 +30,8 @@ class UserController{
         return res.status(401).json({ message: 'Usuário já cadastrado em nossa base' })
       };
   
-      const { id_user, name, email } = await User.create(req.body);
-      return res.json({id_user, name, email});
+      const { id_user, name, email, cpf, birth_date, phone_number, address  } = await User.create(req.body);
+      return res.json({id_user, name, email, cpf, birth_date, phone_number, address });
     };
   
     async index(req, res){
