@@ -1,30 +1,22 @@
 'use strict';
 
 module.exports = {
-  
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('stores', {
-      id:{
+    return queryInterface.createTable('images', {
+      id_image: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      name:{
+      name_image: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email:{
+      path: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      password_hash:{
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      address:{
-        type: Sequelize.STRING,
-        allowNull: false,
+        unique: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -34,11 +26,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    }); 
+    })
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('stores');
+    return queryInterface.dropTable('images');
   }
-
 };

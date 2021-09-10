@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('orders', {
-      id:{
+      id_order:{
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -13,14 +13,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-     /* product:{
+      product:{
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { 
           model: 'products',
-          key: 'id'
+          key: 'id_product'
         }
-      },*/
+      },
+      optionPickup:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       shipping:{
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,11 +37,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-     /* store:{
+      store:{
         type: Sequelize.INTEGER,
         references: {
           model: 'stores',
-          key: 'id'
+          key: 'id_store'
         },
         onDelete: 'SET NULL',
         allowNull: false,
@@ -46,11 +50,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         references:{
           model:'users',
-          hey:'id'
+          key:'id_user'
         },
         onDelete: 'SET NULL',
         allowNull: false,
-      },*/
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -67,4 +71,3 @@ module.exports = {
   }
 
 };
-
