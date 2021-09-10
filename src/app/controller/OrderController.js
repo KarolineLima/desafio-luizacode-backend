@@ -46,8 +46,13 @@ class OrderController{
             if(product){
                 if(product.quantity >= 1){
                     const {randomNumber, id_product, optionPickup, shipping, orderTotal,status, id_store, id_user } = await orders.create(req.body);
-                    console.log(randomNumber, id_product, optionPickup, shipping, orderTotal,status, id_store, id_user)
+                    Product.update(
+                        {quantity: product.quantity - 1},
+                    ).then((updatedRows) =>{
+                        res.json(updatedRows);
+                    })
                     return res.json({ message: "é possível comprar produto"})
+
 
                 }else{
                     return res.json({ message: "produto esgotado"})
