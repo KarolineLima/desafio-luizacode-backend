@@ -39,7 +39,7 @@ class OrderController {
 
         async function products(item) {
             if (item > 0) {
-                const colunaTabelaUsario = + item
+                const colunaTabelaUsario =+ item
                 console.log("codigo", colunaTabelaUsario);
 
 
