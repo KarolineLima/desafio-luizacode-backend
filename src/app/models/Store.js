@@ -4,7 +4,14 @@ import bcrypt from 'bcryptjs';
 class Store extends Model {
   static init(sequelize) {
     super.init({
-      name: Sequelize.STRING,
+      id_store:{
+        primaryKey: true,
+        allowNull: false,
+        field: 'id_store',
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+      },
+      name_store: Sequelize.STRING,
       email: Sequelize.STRING,
       password: Sequelize.VIRTUAL,
       password_hash: Sequelize.STRING,
