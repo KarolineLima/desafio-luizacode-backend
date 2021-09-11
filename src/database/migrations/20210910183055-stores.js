@@ -4,21 +4,13 @@ module.exports = {
   
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('stores', {
-      id_store:{
+      id:{
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      name_store:{
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email:{
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password_hash:{
+      name:{
         type: Sequelize.STRING,
         allowNull: false,
       },
