@@ -8,6 +8,9 @@ import StoreController  from './app/controller/StoreController';
 import ProductController from './app/controller/ProductController';
 import ImageController from './app/controller/ImageController';
 
+import UserController from './app/controller/UserController';
+import authMiddleware from './app/middlewares/auth';
+import SessionController from './app/controller/SessionController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -28,6 +31,13 @@ routes.post('/categories', CategoryController.createCategory)
 routes.get('/categories', CategoryController.find)
 routes.get('/categories/:id', CategoryController.getId)
 routes.post('/stores', StoreController.createStore)
+routes.get('/stores', StoreController.find);
+routes.post('/register', UserController.register);
+routes.post('/login', SessionController.store);
+
+
+// routes.use(authMiddleware);
+// routes.post('/login', StoreController.login);
 
 routes.post('/order', OrderController.createOrder);
 
