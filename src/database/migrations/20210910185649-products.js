@@ -3,13 +3,13 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('products', {
-      id_product:{
+      id:{
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      name_product:{
+      name:{
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -21,19 +21,19 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      id_category:{
+      category_id:{
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { 
           model: 'categories',
-          key: 'id_category'
+          key: 'id'
         }
       },
-      id_image: {
+      image_id: {
         type: Sequelize.INTEGER,
         references: { 
           model: 'images', 
-          key: 'id_image'
+          key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',

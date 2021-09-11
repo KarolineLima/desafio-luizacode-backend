@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('orders', {
-      id_order:{
+      id:{
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -13,12 +13,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      product:{
+      product_id:{
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { 
           model: 'products',
-          key: 'id_product'
+          key: 'id'
         }
       },
       optionPickup:{
@@ -37,20 +37,20 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      store:{
+      store_id:{
         type: Sequelize.INTEGER,
         references: {
           model: 'stores',
-          key: 'id_store'
+          key: 'id'
         },
         onDelete: 'SET NULL',
         allowNull: false,
       },
-      user:{
+      user_id:{
         type: Sequelize.INTEGER,
         references:{
           model:'users',
-          key:'id_user'
+          key:'id'
         },
         onDelete: 'SET NULL',
         allowNull: false,
