@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import multerConfig from './config/multer';
+import OrderController from './app/controller/OrderController';
 
 import StoreController from './app/controller/StoreController';
 import ImageController from './app/controller/ImageController';
@@ -21,5 +22,6 @@ routes.delete('/product/:id', ProductController.delete)
 
 routes.post('/image', upload.single('image'), ImageController.store);
 //demais rotas
+routes.post('/order', OrderController.createOrder);
 
 export default routes;

@@ -11,12 +11,12 @@ import './database';
 class App{
   constructor() {
     this.server = express();
-    //this.routes();
+    this.routes();
   }
 
-  // routes(){
-  //   this.server.user(routes);
-  // }
+  routes(){
+    this.server.use(routes);
+   }
 }
 
 export default new App().server;
