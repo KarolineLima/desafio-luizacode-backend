@@ -1,8 +1,12 @@
 import { Router } from 'express';
+<<<<<<< HEAD
 import multer from 'multer';
 import multerConfig from './config/multer';
 import OrderController from './app/controller/OrderController';
 import CategoryController from './app/controller/CategoryController';
+=======
+import OrderController from './app/controller/OrderController';
+>>>>>>> work in progress
 
 import StoreController from './app/controller/StoreController';
 import ImageController from './app/controller/ImageController';
