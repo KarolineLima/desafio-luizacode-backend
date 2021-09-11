@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import Store from '../models/Store';
 import Product from '../models/Product';
-
+import Order from '../models/Order';
 
 class OrderController {
 
@@ -38,7 +38,7 @@ class OrderController {
 
         async function products(item) {
             if (item > 0) {
-                const colunaTabelaUsario =+ item
+                const colunaTabelaUsario = + item
                 console.log("codigo", colunaTabelaUsario);
 
 
