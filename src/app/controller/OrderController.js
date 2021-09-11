@@ -1,11 +1,17 @@
 import * as Yup from 'yup';
 import Store from '../models/Store';
 import Product from '../models/Product';
-
+import Order from '../models/Order';
 
 class OrderController {
 
     async createOrder(req, res) {
+
+        function randomNumber() {
+            const numberOrder = Math.floor(Math.random() * 65536789);
+            return numberOrder
+        }
+        console.log(randomNumber());
 
         const schema = Yup.object().shape({
             numberOrder: Yup.number(),
@@ -14,62 +20,62 @@ class OrderController {
             shipping: Yup.number(),
             orderTotal: Yup.number().required(),
             status: Yup.string().required(),
-            id_store: Yup.number().required(),
-            id_user: Yup.number().required()
+            store: Yup.number().required(),
+            user: Yup.number().required()
 
         });
 
-       
-        if(!(await schema.isValid(req.body))){
-            return res.status(401).json({ message: 'Opa, dados inválidos'})
+        //console.log("schema", schema);
+        //console.log("aqui", id_product);
+
+
+        if (!(await schema.isValid(req.body))) {
+            console.log("body", req.body)
+            return res.status(401).json({ message: 'Opa, dados inválidos' })
 
         }
         const orders = ["123", "568"];
-     
+
         async function products(item) {
             if (item > 0) {
-                const colunaTabelaUsario =+ item
+                const colunaTabelaUsario = + item
                 console.log("codigo", colunaTabelaUsario);
 
-                function randomNumber() {
-                    const numberOrder = Math.floor(Math.random() * 65536789);
-                    return numberOrder
-                }
 
-                const product = await Product.findOne({
+                const { id_product } = await Product.findOne({
                     where: { id_product: id_product, id_product: true }
                 });
 
                 const store = await Store.findOne({
-                    where: { id_product: id_product, id_product: true, $and:{id_store: id_store, id_store: true} }
+                    where: { id_product: id_product, id_product: true, $and: { id_store: id_store, id_store: true } }
                 });
 
                 console.log(product, store)
 
-                if(store){
+                if (store) {
                     if (product) {
                         if (product.quantity >= 1) {
-                            const { randomNumber, id_product, optionPickup, shipping, orderTotal, status, id_store, id_user } = await orders.create(req.body);
+                            const { randomNumber, id_product, optionPickup, shipping, orderTotal, status, id_store, id_user } = await Order.create(req.body);
                             Product.update(
                                 { quantity: product.quantity - 1 },
                             ).then((updatedRows) => {
                                 res.json(updatedRows);
                             })
                             return res.json({ message: "é possível comprar produto" })
-    
-    
+
+
                         } else {
                             return res.json({ message: "produto esgotado" })
                         }
-    
-                    }else{
+
+                    } else {
                         return res.json({ message: "Produto inexistente" })
                     }
 
-                }else{
+                } else {
                     return res.json({ message: "Loja inexistente ou produto inexistente" })
                 }
-               
+
             }
             return 0
         }
@@ -78,6 +84,21 @@ class OrderController {
 
     }
 
+    async removeProduct(req, res) {
+        const orders = ["123", "568"];
+        const index = product.indexOf(req.body)
+        const option = orders.splice(index, 1)
+
+        return res.status(200).json({ message: `Produto removido: ${option}. Lista de produtos atualizada: ${orders}` })
+    }
+
+    async addProduct(req, res) {
+        const orders = ["123", "568"];
+        const add_product = orders.push(req.body)
+
+        return res.status(200).json({ message: `Produto adicionado ${add_product}. Lista de produtos atualizada: ${orders}` })
+
+    }
 }
 
 export default new OrderController();
