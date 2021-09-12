@@ -21,3 +21,5 @@ class orderProductController{
    }
 
 }
+
+export default orderProductController()

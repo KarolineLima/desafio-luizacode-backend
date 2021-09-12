@@ -4,10 +4,10 @@ class Order extends Model {
     static init(sequelize) {
         super.init(
             {
-                numberOrder: Sequelize.STRING,
-                optionPickup: Sequelize.STRING,
+                number_order: Sequelize.STRING,
+                option_pickup: Sequelize.STRING,
                 shipping: Sequelize.INTEGER,
-                orderTotal: Sequelize.INTEGER,
+                order_total: Sequelize.INTEGER,
                 status: Sequelize.STRING,
                 store_id: Sequelize.INTEGER,
                 user_id: Sequelize.INTEGER,
