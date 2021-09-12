@@ -26,6 +26,8 @@ routes.delete('/product/:id', ProductController.delete)
 routes.post('/image', upload.single('image'), ImageController.create);
 
 routes.post('/order', OrderController.createOrder);
+routes.post('/order-status', OrderController.updateStatus);
+routes.post('/order-product/user', OrderController.listByUser);
 
 routes.post('/categories', CategoryController.createCategory)
 routes.get('/categories', CategoryController.find)

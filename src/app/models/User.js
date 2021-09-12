@@ -12,11 +12,6 @@ class User extends Model {
       birth_date: Sequelize.DATE,
       phone_number: Sequelize.INTEGER,
       address: Sequelize.STRING,
-      id_user: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
     },
       {
         sequelize,
