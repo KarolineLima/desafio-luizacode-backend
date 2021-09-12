@@ -9,11 +9,11 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      numberOrder:{
+      number_order:{
         type: Sequelize.STRING,
         allowNull: false,
       },
-      optionPickup:{
+      option_pickup:{
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      orderTotal:{
+      order_total:{
         type: Sequelize.INTEGER,
         allowNull: false,
       },
