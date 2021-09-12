@@ -4,100 +4,72 @@ import Product from '../models/Product';
 import Order from '../models/Order';
 
 class OrderController {
-
     async createOrder(req, res) {
-
-        function randomNumber() {
-            const numberOrder = Math.floor(Math.random() * 65536789);
-            return numberOrder
-        }
-        console.log(randomNumber());
-
         const schema = Yup.object().shape({
-            numberOrder: Yup.number(),
-            id_product: Yup.number().required(),
+            product_id: Yup.number().required(),
             optionPickup: Yup.string(),
             shipping: Yup.number(),
             orderTotal: Yup.number().required(),
             status: Yup.string().required(),
-            store: Yup.number().required(),
-            user: Yup.number().required()
-
+            store_id: Yup.number().required(),
+            user_id: Yup.number().required(),
         });
 
-        //console.log("schema", schema);
-        //console.log("aqui", id_product);
-
-
         if (!(await schema.isValid(req.body))) {
-            console.log("body", req.body)
-            return res.status(401).json({ message: 'Opa, dados inválidos' })
-
+            console.log('body', req.body);
+            return res.status(401).json({ message: 'Dados inválidos' });
         }
-        const orders = ["123", "568"];
+ 
+        const ordersProducts = req.body.products_ids;
 
-        async function products(item) {
-            if (item > 0) {
-                const colunaTabelaUsario = + item
-                console.log("codigo", colunaTabelaUsario);
+        ordersProducts.map(async (product) => await OrderProduct.create({order_id: order.order_id, product_id: product}));
 
+        const{ product_id, optionPickup, shipping,
+             orderTotal, status ,store_id, user_id} = req.body;
 
-                const { id_product } = await Product.findOne({
-                    where: { id_product: id_product, id_product: true }
+        const numberOrderRandom = Math.floor(Math.random() * 10000);
+
+        const {numberOrder} = Order.create({ numberOrder:numberOrderRandom, product_id, optionPickup, shipping,
+                orderTotal, status ,store_id, user_id })
+
+        return res.status(201).json({numberOrder});
+    }
+
+    async listByUser(user_id) {
+        const userOrder = await Order.findAll({
+            where: { user_id }
+        })
+
+        userOrder.reduce(async (acumulator) => {
+            const orderProducts = await orderProduct.findAll({
+                where: { order_id }
+            })
+            orderProducts.map(() => {
+                const product = Product.findOne({
+                    where: { order_id }
                 });
+                acumulator = [...acumulator, product]
+            });
+            return acumulator ;
+          }, []);
 
-                const store = await Store.findOne({
-                    where: { id_product: id_product, id_product: true, $and: { id_store: id_store, id_store: true } }
-                });
+        const orderProducts = await orderProduct.findAll({
+            where: { order_id }
+        });
 
-                console.log(product, store)
-
-                if (store) {
-                    if (product) {
-                        if (product.quantity >= 1) {
-                            const { randomNumber, id_product, optionPickup, shipping, orderTotal, status, id_store, id_user } = await Order.create(req.body);
-                            Product.update(
-                                { quantity: product.quantity - 1 },
-                            ).then((updatedRows) => {
-                                res.json(updatedRows);
-                            })
-                            return res.json({ message: "é possível comprar produto" })
-
-
-                        } else {
-                            return res.json({ message: "produto esgotado" })
-                        }
-
-                    } else {
-                        return res.json({ message: "Produto inexistente" })
-                    }
-
-                } else {
-                    return res.json({ message: "Loja inexistente ou produto inexistente" })
-                }
-
-            }
-            return 0
-        }
-
-        orders.forEach(products);
+        return orderProducts;
 
     }
 
-    async removeProduct(req, res) {
-        const orders = ["123", "568"];
-        const index = product.indexOf(req.body)
-        const option = orders.splice(index, 1)
 
-        return res.status(200).json({ message: `Produto removido: ${option}. Lista de produtos atualizada: ${orders}` })
-    }
+    async updateStatus(req, res){
+        const { id, status } = req.body
+  
+        const order = Order.findByPk(id)
 
-    async addProduct(req, res) {
-        const orders = ["123", "568"];
-        const add_product = orders.push(req.body)
+        const currentOrder = order.update({ status })
 
-        return res.status(200).json({ message: `Produto adicionado ${add_product}. Lista de produtos atualizada: ${orders}` })
-
+        return res.status(200).json( currentOrder );
     }
 }
 
