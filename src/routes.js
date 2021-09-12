@@ -18,11 +18,11 @@ routes.get('/stores', StoreController.find)
 
 routes.post('/product', ProductController.createProduct)
 routes.get('/product', ProductController.listAll)
-routes.get('/product/:id', ProductController.listById)
+routes.get('/product/:id', ProductController.getById)
 routes.put('/product/:id', ProductController.update)
 routes.delete('/product/:id', ProductController.delete)
 
-routes.post('/image', upload.single('image'), ImageController.store);
+routes.post('/image', upload.single('image'), ImageController.create);
 
 routes.post('/order', OrderController.createOrder);
 

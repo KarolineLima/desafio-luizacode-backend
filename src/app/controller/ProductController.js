@@ -33,7 +33,7 @@ class ProductController{
             return res.status(401).json({ message: 'Produto já está cadastrado'})
         }
 
-        const { id, name, valueProduct, quantity, imageId } = await Product.create({ ...req.body, imageId });
+        const { id, name, valueProduct, quantity } = await Product.create({ ...req.body, imageId });
         return res.status(201).json({ id, name, valueProduct, quantity });
 
     };
