@@ -40,7 +40,7 @@ class OrderController {
             where: { user_id }
         })
 
-        userOrder.reduce((acumulator) => {
+        userOrder.reduce(async (acumulator) => {
             const orderProducts = await orderProduct.findAll({
                 where: { order_id }
             })
