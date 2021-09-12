@@ -4,11 +4,9 @@ import multer from 'multer';
 import multerConfig from './config/multer';
 import OrderController from './app/controller/OrderController';
 import CategoryController from './app/controller/CategoryController';
-
-import StoreController from './app/controller/StoreController';
-import ImageController from './app/controller/ImageController';
-
+import StoreController  from './app/controller/StoreController';
 import ProductController from './app/controller/ProductController';
+import ImageController from './app/controller/ImageController';
 
 
 const routes = new Router();
@@ -31,4 +29,6 @@ routes.get('/categories', CategoryController.find)
 routes.get('/categories/:id', CategoryController.getId)
 routes.post('/stores', StoreController.createStore)
 
-export default routes
+routes.post('/order', OrderController.createOrder);
+
+export default routes;
