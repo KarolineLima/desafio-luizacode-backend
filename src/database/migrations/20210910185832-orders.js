@@ -13,14 +13,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      product_id:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { 
-          model: 'products',
-          key: 'id'
-        }
-      },
       optionPickup:{
         type: Sequelize.STRING,
         allowNull: false,

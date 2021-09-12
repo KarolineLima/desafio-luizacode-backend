@@ -6,12 +6,11 @@ class Order extends Model {
             {
                 numberOrder: Sequelize.STRING,
                 optionPickup: Sequelize.STRING,
-                // id_product: Sequelize.INTEGER,
                 shipping: Sequelize.INTEGER,
                 orderTotal: Sequelize.INTEGER,
                 status: Sequelize.STRING,
-                // store: Sequelize.INTEGER,
-                // user: Sequelize.INTEGER,
+                store_id: Sequelize.INTEGER,
+                user_id: Sequelize.INTEGER,
             },
             {
                 sequelize,
@@ -21,10 +20,6 @@ class Order extends Model {
         return this;
     }
     static associate(models) {
-        this.belongsTo(models.Product, {
-            foreignKey: 'product_id',
-            as: 'products',
-        });
         this.belongsTo(models.Store, { foreignKey: 'store_id', as: 'stores' });
         this.belongsTo(models.User, { foreignKey: 'user_id', as: 'users' });
     }

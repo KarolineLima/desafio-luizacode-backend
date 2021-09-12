@@ -5,10 +5,7 @@ class Product extends Model {
         super.init(
             {
                 name: Sequelize.STRING,
-                value_product: {
-                    type: Sequelize.INTEGER,
-                    field: 'valueProduct',
-                },
+                valueProduct: Sequelize.INTEGER,
                 quantity: Sequelize.INTEGER,
             },
             {
@@ -19,12 +16,9 @@ class Product extends Model {
         return this;
     }
 
-    static associate(models) {
-        this.belongsTo(models.Category, {
-            foreignKey: 'category_id',
-            as: 'category',
-        });
-        // this.belongsTo( models.Image, { foreignKey: 'image_id', as: 'image'});
+    static associate(models){
+        this.belongsTo( models.Category, { foreignKey: 'category_id', as: 'category'});
+        this.belongsTo( models.Image, { foreignKey: 'image_id', as: 'image'});
     }
 }
 
