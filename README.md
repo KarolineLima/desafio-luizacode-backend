@@ -72,3 +72,10 @@ DressCode uses the ones below to work properly:
 - node.js - evented I/O for the backend
 - Express - fast node.js network app framework
 - Postgres - our database
+  
+  
+<a name="Swagger" />
+
+### To see the Swagger runnig, acess 
+  
+  http://localhost:3080/doc/
