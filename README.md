@@ -74,8 +74,8 @@ DressCode uses the ones below to work properly:
 - Postgres - our database
   
   
-<a name="Swagger" />
+###Swagger
 
-### To see the Swagger runnig, acess 
+### To see the Swagger runnig, acess. 
   
-  http://localhost:3080/doc/
+  [Swagger access](http://localhost:3080/doc/)
