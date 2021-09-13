@@ -10,14 +10,15 @@ import routes from "./routes";
 class App {
   constructor() {
     this.server = express();
+    this.server.use(cors());
+    this.server.options('*', cors());
     this.server.use(express.json());
     this.routes();
     this.middleware();
   }
 
   middleware() {
-    this.server.use(cors());
-    this.server.use(express.json());
+    this.server.use(express.json())
     this.server.use(
       "/files",
       express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
