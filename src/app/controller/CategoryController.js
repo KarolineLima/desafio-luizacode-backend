@@ -31,6 +31,7 @@ class CategoryController {
         }
     }
     async createCategory(req, res) {
+        console.log('testing')
         try {
             const { name } = req.body;
 
