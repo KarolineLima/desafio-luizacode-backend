@@ -31,11 +31,11 @@
     "swagger-autogen": "^2.11.2",
     "swagger-ui-express": "^4.1.6",
     "yup": "^0.32.9",
-    "yup-phone": "^1.2.19"
+    "yup-phone": "^1.2.19",
+    "sucrase": "^3.20.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",
-    "sequelize-cli": "^6.2.0",
-    "sucrase": "^3.20.1"
+    "sequelize-cli": "^6.2.0"
   }
 }
